@@ -2,10 +2,11 @@
 <html><body>
     <h1>spriter</h1>
     <input id="img" type="file" accept="image/png, image/bmp, image/gif"/>
-    <p id="status">Waiting for file</p>
+    <p id="status">Not yet set</p>
     <script>
         let stat = document.getElementById("status");
         let imgIn = document.getElementById("img");
+        stat.textContent = "Waiting for change";
         imgIn.onchange(_ => {
             stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
@@ -21,6 +22,7 @@
                     stat.textContent = dbgStr;
                     alert(dbgStr);
                 });
+                reader.readAsDataURL(imgIn.files[0]);
             } else {
                 stat.textContent = "No uploaded img";
                 alert("No uploaded image found.");
