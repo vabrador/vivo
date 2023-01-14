@@ -67,7 +67,7 @@
 
                         // set a pixel value
                         imgData.data[readIdx] = 255;
-                        ctx.putImageData(imgData);
+                        ctx.putImageData(imgData, 0, 0);
                         stat.textContent = `Tried to set image data @ ${readIdx} to 255`;
                     }
 
