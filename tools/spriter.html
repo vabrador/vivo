@@ -12,7 +12,7 @@
     <div id="pick-text">waiting for pick</div>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 19";
+        stat.textContent = "Spriter 20";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
@@ -57,7 +57,7 @@
                         let y = 0;
                         let w = img.naturalWidth;
                         let h = img.naturalHeight;
-                        let c = 2; // rGba
+                        let c = 1; // rGba
                         let readIdx = c + (x * 4) + (y * w * 4);
                         stat.textContent = `Attempting readIdx ${readIdx}`;
                         let somePxByte = imgData.data[readIdx];
