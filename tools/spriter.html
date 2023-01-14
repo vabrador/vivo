@@ -9,7 +9,7 @@
     <p id="bytes-p">Not yet set</p>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 15";
+        stat.textContent = "Spriter 16";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
@@ -43,9 +43,9 @@
                         canvas.width = img.naturalWidth;
                         canvas.height = img.naturalHeight;
                         ctx.drawImage(img, 0, 0);
-                        var myData = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
-                        
-                        dbgStr = `Total pixel bytes len is ${myData.data.byteLength}`;
+                        var imgData = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+
+                        dbgStr = `Total pixel bytes len is ${imgData.data.byteLength}`;
                         stat.textContent = dbgStr;
                         bytesP.textContent = myData.data.byteLength;
                         
@@ -57,14 +57,14 @@
                         let c = 2; // rGba
                         let readIdx = c + (x * 4) + (y * w * 4);
                         stat.textContent = `Attempting readIdx ${readIdx}`;
-                        let somePxByte = myData.data[readIdx];
+                        let somePxByte = imgData.data[readIdx];
                         
-                        dbgStr = `Total pixel bytes len is ${myData.data.byteLength} and somePxByte(4, 1)@G (${readIdx}) = ${somePxByte}`;
+                        dbgStr = `Total pixel bytes len is ${imgData.data.byteLength} and somePxByte(4, 1)@G (${readIdx}) = ${somePxByte}`;
                         stat.textContent = dbgStr;
 
                         // set a pixel value
-                        myData.data[readIdx] = 255;
-                        ctx.putImageData(myData);
+                        imgData.data[readIdx] = 255;
+                        ctx.putImageData(imgData);
                         stat.textContent = `Tried to set image data @ ${readIdx} to 255`;
                     }
 
@@ -77,5 +77,27 @@
                 alert("No uploaded image found.");
             }
         };
+
+        const hoveredColor = document.getElementById("hovered-color");
+        const selectedColor = document.getElementById("selected-color");
+
+        function pick(event, destination) {
+            const bounding = canvas.getBoundingClientRect();
+            const x = event.clientX - bounding.left;
+            const y = event.clientY - bounding.top;
+            const pixel = ctx.getImageData(x, y, 1, 1);
+            const data = pixel.data;
+
+            const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+            destination.style.background = rgba;
+            destination.textContent = rgba;
+
+            return rgba;
+        }
+
+        canvas.addEventListener("mousemove", (event) => pick(event, hoveredColor));
+        canvas.addEventListener("click", (event) => pick(event, selectedColor));
     </script>
+    <div id="hovered-color">hovered color</div>
+    <div id="selected-color">selected color</div>
 </body></html>
