@@ -7,9 +7,12 @@
     <p id="width-p">Not yet set</p>
     <p id="height-p">Not yet set</p>
     <p id="bytes-p">Not yet set</p>
+    <div id="hovered-color">hovered color</div>
+    <div id="selected-color">selected color</div>
+    <div id="pick-text">waiting for pick</div>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 16";
+        stat.textContent = "Spriter 17";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
@@ -80,6 +83,7 @@
 
         const hoveredColor = document.getElementById("hovered-color");
         const selectedColor = document.getElementById("selected-color");
+        // const pickText = document.getElementById("pick-text");
 
         function pick(event, destination) {
             const bounding = canvas.getBoundingClientRect();
@@ -92,12 +96,12 @@
             destination.style.background = rgba;
             destination.textContent = rgba;
 
+            document.getElementById("pick-text").textContent = `got a pick, ${rgba}`;
+
             return rgba;
         }
 
         canvas.addEventListener("mousemove", (event) => pick(event, hoveredColor));
         canvas.addEventListener("click", (event) => pick(event, selectedColor));
     </script>
-    <div id="hovered-color">hovered color</div>
-    <div id="selected-color">selected color</div>
 </body></html>
