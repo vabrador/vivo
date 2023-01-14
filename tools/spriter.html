@@ -6,7 +6,7 @@
     <script>
         let stat = document.getElementById("status");
         let imgIn = document.getElementById("img");
-        stat.textContent = "Waiting for change 6";
+        stat.textContent = "Waiting for change 7";
         imgIn.onchange = _ => {
             stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
@@ -16,18 +16,16 @@
                     stat.textContent = "Reader got onload";
                     let dataUri = ev.target.result;
                     let img = new Image();
-                    img.src = dataUri;
-
-                    img.onloadeddata = _ => {
+                    
+                    img.onload = _ => {
                         let dbgStr = `Image dimensions: ${img.naturalWidth} x ${img.naturalHeight}`;
                         stat.textContent = dbgStr;
-                        alert(dbgStr);
-
+                        
                         if (img.naturalWidth == 0) {
                             stat.textContent = "Error no width, it's 0";
                             return;
                         }
-
+                        
                         // image data
                         stat.textContent = "Trying to make canvas";
                         var canvas = document.createElement('canvas');
@@ -36,19 +34,22 @@
                         canvas.height = img.naturalHeight;
                         context.drawImage(img, 0, 0);
                         var myData = context.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
-
+                        
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength}`;
                         stat.textContent = dbgStr;
-
+                        
                         // guessing RGBA each as uint8s
                         let x = 4;
                         let y = 1;
                         let c = 2; // rGba
                         let somePxByte = myData.data[c + (x * 4) + (y * width * 4)];
-
+                        
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength} and somePxByte(4, 1)@G = ${somePxByte}`;
                         stat.textContent = dbgStr;
                     }
+
+                    stat.textContent = "Setting img.src";
+                    img.src = dataUri;
                 };
                 reader.readAsDataURL(imgIn.files[0]);
             } else {
