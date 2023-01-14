@@ -2,18 +2,22 @@
 <html><body>
     <h1>spriter</h1>
     <input id="img" type="file" accept="image/png, image/bmp, image/gif"/>
+    <canvas id="canvas"></canvas>
     <p id="status">Not yet set</p>
     <p id="width-p">Not yet set</p>
     <p id="height-p">Not yet set</p>
     <p id="bytes-p">Not yet set</p>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 14";
+        stat.textContent = "Spriter 15";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
         let heightP = document.getElementById("height-p");
         let bytesP = document.getElementById("bytes-p");
+
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext('2d');
         imgIn.onchange = _ => {
             stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
@@ -36,13 +40,10 @@
                         }
                         
                         // image data
-                        stat.textContent = "Trying to make canvas";
-                        var canvas = document.createElement('canvas');
-                        var context = canvas.getContext('2d');
                         canvas.width = img.naturalWidth;
                         canvas.height = img.naturalHeight;
-                        context.drawImage(img, 0, 0);
-                        var myData = context.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+                        ctx.drawImage(img, 0, 0);
+                        var myData = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
                         
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength}`;
                         stat.textContent = dbgStr;
@@ -63,7 +64,7 @@
 
                         // set a pixel value
                         myData.data[readIdx] = 255;
-                        context.putImageData(myData);
+                        ctx.putImageData(myData);
                         stat.textContent = `Tried to set image data @ ${readIdx} to 255`;
                     }
 
