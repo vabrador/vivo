@@ -3,16 +3,16 @@
     <h1>spriter</h1>
     <input id="img" type="file" accept="image/png, image/bmp, image/gif"/>
     <canvas id="canvas"></canvas>
-    <p id="status">Not yet set</p>
-    <p id="width-p">Not yet set</p>
-    <p id="height-p">Not yet set</p>
-    <p id="bytes-p">Not yet set</p>
+    <p id="status">status Not yet set</p>
+    <p id="width-p">width Not yet set</p>
+    <p id="height-p">height Not yet set</p>
+    <p id="bytes-p">bytes Not yet set</p>
     <div id="hovered-color">hovered color</div>
     <div id="selected-color">selected color</div>
     <div id="pick-text">waiting for pick</div>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 18";
+        stat.textContent = "Spriter 19";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
@@ -53,8 +53,8 @@
                         bytesP.textContent = imgData.data.byteLength;
                         
                         // guessing RGBA each as uint8s
-                        let x = 4;
-                        let y = 1;
+                        let x = 0;
+                        let y = 0;
                         let w = img.naturalWidth;
                         let h = img.naturalHeight;
                         let c = 2; // rGba
@@ -62,7 +62,7 @@
                         stat.textContent = `Attempting readIdx ${readIdx}`;
                         let somePxByte = imgData.data[readIdx];
                         
-                        dbgStr = `Total pixel bytes len is ${imgData.data.byteLength} and somePxByte(4, 1)@G (${readIdx}) = ${somePxByte}`;
+                        dbgStr = `Total pixel bytes len is ${imgData.data.byteLength} and somePxByte(${x}, ${y})@G (${readIdx}) = ${somePxByte}`;
                         stat.textContent = dbgStr;
 
                         // set a pixel value
