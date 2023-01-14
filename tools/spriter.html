@@ -7,12 +7,12 @@
         let stat = document.getElementById("status");
         let imgIn = document.getElementById("img");
         stat.textContent = "Waiting for change";
-        imgIn.onchange(_ => {
+        imgIn.onchange = _ => {
             stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
                 stat.textContent = "Got some file";
                 let reader = new FileReader();
-                reader.onload(ev => {
+                reader.onload = ev => {
                     stat.textContent = "Reader got onload";
                     let dataUri = ev.target.result;
                     let img = new Image();
@@ -21,12 +21,12 @@
                     let dbgStr = `Image dimensions: ${width} x ${height}`;  
                     stat.textContent = dbgStr;
                     alert(dbgStr);
-                });
+                };
                 reader.readAsDataURL(imgIn.files[0]);
             } else {
                 stat.textContent = "No uploaded img";
                 alert("No uploaded image found.");
             }
-        });
+        };
     </script>
 </body></html>
