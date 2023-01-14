@@ -8,7 +8,7 @@
     <p id="bytes-p">Not yet set</p>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 11";
+        stat.textContent = "Spriter 12";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
@@ -60,6 +60,11 @@
                         
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength} and somePxByte(4, 1)@G = ${somePxByte}`;
                         stat.textContent = dbgStr;
+
+                        // set a pixel value
+                        myData.data.buffer[readIdx] = 255;
+                        context.putImageData(myData);
+                        stat.textContent = `Tried to set image data @ ${readIdx} to 255`;
                     }
 
                     stat.textContent = "Setting img.src";
