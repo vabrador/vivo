@@ -2,20 +2,27 @@
 <html><body>
     <h1>spriter</h1>
     <input id="img" type="file" accept="image/png, image/bmp, image/gif"/>
+    <p id="status">Waiting for file</p>
     <script>
+        let stat = document.getElementById("status");
         let imgIn = document.getElementById("img");
         imgIn.onchange(_ => {
+            stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
+                stat.textContent = "Got some file";
                 let reader = new FileReader();
-                reader.onload = ev => {
+                reader.onload(ev => {
+                    stat.textContent = "Reader got onload";
                     let dataUri = ev.target.result;
                     let img = new Image();
                     img.src = dataUri;
                     
-                    let dbgStr = `Image dimensions: ${width} x ${height}`;
+                    let dbgStr = `Image dimensions: ${width} x ${height}`;  
+                    stat.textContent = dbgStr;
                     alert(dbgStr);
-                };
+                });
             } else {
+                stat.textContent = "No uploaded img";
                 alert("No uploaded image found.");
             }
         });
