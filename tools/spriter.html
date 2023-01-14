@@ -3,10 +3,17 @@
     <h1>spriter</h1>
     <input id="img" type="file" accept="image/png, image/bmp, image/gif"/>
     <p id="status">Not yet set</p>
+    <p id="width-p">Not yet set</p>
+    <p id="height-p">Not yet set</p>
+    <p id="bytes-p">Not yet set</p>
     <script>
         let stat = document.getElementById("status");
+        stat.textContent = "Spriter 8";
+        
         let imgIn = document.getElementById("img");
-        stat.textContent = "Waiting for change 7";
+        let widthP = document.getElementById("width-p");
+        let heightP = document.getElementById("height-p");
+        let bytesP = document.getElementById("bytes-p");
         imgIn.onchange = _ => {
             stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
@@ -20,7 +27,9 @@
                     img.onload = _ => {
                         let dbgStr = `Image dimensions: ${img.naturalWidth} x ${img.naturalHeight}`;
                         stat.textContent = dbgStr;
-                        
+
+                        widthP.textContent = img.naturalWidth;
+                        heightP.textContent = img.naturalHeight;
                         if (img.naturalWidth == 0) {
                             stat.textContent = "Error no width, it's 0";
                             return;
@@ -37,12 +46,15 @@
                         
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength}`;
                         stat.textContent = dbgStr;
+                        bytesP.textContent = myData.data.byteLength;
                         
                         // guessing RGBA each as uint8s
                         let x = 4;
                         let y = 1;
                         let c = 2; // rGba
-                        let somePxByte = myData.data[c + (x * 4) + (y * width * 4)];
+                        let readIdx = c + (x * 4) + (y * width * 4);
+                        dbgStr = `Attempting readIdx ${readIdx}`;
+                        let somePxByte = myData.data.buffer[c + (x * 4) + (y * width * 4)];
                         
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength} and somePxByte(4, 1)@G = ${somePxByte}`;
                         stat.textContent = dbgStr;
