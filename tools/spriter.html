@@ -12,7 +12,7 @@
     <div id="pick-text">waiting for pick</div>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 17";
+        stat.textContent = "Spriter 18";
 
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
@@ -50,7 +50,7 @@
 
                         dbgStr = `Total pixel bytes len is ${imgData.data.byteLength}`;
                         stat.textContent = dbgStr;
-                        bytesP.textContent = myData.data.byteLength;
+                        bytesP.textContent = imgData.data.byteLength;
                         
                         // guessing RGBA each as uint8s
                         let x = 4;
