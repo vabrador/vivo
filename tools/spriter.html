@@ -8,8 +8,8 @@
     <p id="bytes-p">Not yet set</p>
     <script>
         let stat = document.getElementById("status");
-        stat.textContent = "Spriter 8";
-        
+        stat.textContent = "Spriter 9";
+
         let imgIn = document.getElementById("img");
         let widthP = document.getElementById("width-p");
         let heightP = document.getElementById("height-p");
@@ -53,7 +53,7 @@
                         let y = 1;
                         let c = 2; // rGba
                         let readIdx = c + (x * 4) + (y * width * 4);
-                        dbgStr = `Attempting readIdx ${readIdx}`;
+                        stat.textContent = `Attempting readIdx ${readIdx}`;
                         let somePxByte = myData.data.buffer[c + (x * 4) + (y * width * 4)];
                         
                         dbgStr = `Total pixel bytes len is ${myData.data.byteLength} and somePxByte(4, 1)@G = ${somePxByte}`;
