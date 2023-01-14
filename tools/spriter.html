@@ -1,0 +1,23 @@
+<!doctype html>
+<html><body>
+    <h1>spriter</h1>
+    <input id="img" type="image"/>
+    <script>
+        let imgIn = document.getElementById("img");
+        imgIn.onchange(_ => {
+            if (imgIn.files && imgIn.files[0]) {
+                let reader = new FileReader();
+                reader.onload = ev => {
+                    let dataUri = ev.target.result;
+                    let img = new Image();
+                    img.src = dataUri;
+                    
+                    let dbgStr = `Image dimensions: ${width} x ${height}`;
+                    alert(dbgStr);
+                };
+            } else {
+                alert("No uploaded image found.");
+            }
+        });
+    </script>
+</body></html>
