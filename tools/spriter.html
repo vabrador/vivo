@@ -6,7 +6,7 @@
     <script>
         let stat = document.getElementById("status");
         let imgIn = document.getElementById("img");
-        stat.textContent = "Waiting for change";
+        stat.textContent = "Waiting for change 3";
         imgIn.onchange = _ => {
             stat.textContent = "Got change";
             if (imgIn.files && imgIn.files[0]) {
@@ -18,7 +18,7 @@
                     let img = new Image();
                     img.src = dataUri;
                     
-                    let dbgStr = `Image dimensions: ${width} x ${height}`;  
+                    let dbgStr = `Image dimensions: ${img.width} x ${img.height}`;
                     stat.textContent = dbgStr;
                     alert(dbgStr);
                 };
