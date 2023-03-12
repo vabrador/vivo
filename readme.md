@@ -15,3 +15,10 @@ Start hot-reloading server: [reference](https://github.com/tapio/live-server)
 npm install -g live-server
 just serve
 ```
+
+To test, visit the machine locally... for mawile,
+```
+http://mawile.local:8765/exp2_vivoMonsat/
+```
+for example.
+
