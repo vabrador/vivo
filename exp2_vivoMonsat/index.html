@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Vivo! 0.0.1</title>
-    <link rel="stylesheet" href="index.css"/>
+    <title>Vivo 0.0.2 - Monsat</title>
+    <link rel="stylesheet" href="vivo_player/styles/index.css"/>
   </head>
   <body>
     <h1>VIVO-4</h1>
-    <p class="style-test">hello, style test</p>
     <canvas
-      id="lvvScreenCnv"
+      id="vv_screen_canvas"
       width=128 height=128
       style="
         width: 384px;
@@ -20,10 +19,15 @@
       "
     ></canvas>
     <h2>CONSOLE</h2>
-    <p id="lvvConsoleElm" style="
-      height: 300px;
+    <p id="vv_console" style="
+      height: 100px;
       overflow-y: scroll;
-    ">ERROR: CONSOLE NOT INITIALIZED.</p>
+    ">(Console start)</p>
+    <h2>FRAME CONSOLE</h2>
+    <p id="vv_frame_console" style="
+      height: 100px;
+      overflow-y: scroll;
+    ">(Console start)</p>
     <script type="module" src="index.js"></script>
   </body>
 </html>

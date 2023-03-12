@@ -13,7 +13,7 @@
 
 // import * from './lib.js';
 
-import * as vv from "./lib.js";
+import * as vv from "./libvivo.js";
 
 // =======================================
 // STARTUP
