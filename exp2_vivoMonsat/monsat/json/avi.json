@@ -1,0 +1,27 @@
+{
+    "name": "avi",
+    "spawn_type": "unique",
+    "components": {
+        "sprite": "sprites/actor_avi.png",
+        "spritesheet": { "cols": 4, "rows": 4, "cell_width": 12, "cell_height": 12 },
+        "anchor": [6, 0],
+        "animations": {
+            "idle_down":  { "frames": [  0  ], "speed": 1 },
+            "idle_up":    { "frames": [  4  ], "speed": 1 },
+            "idle_right": { "frames": [  8  ], "speed": 1 },
+            "idle_left":  { "frames": [ 12  ], "speed": 1 },
+            "walk_down":  { "frames": [  0,  1,  2,  3 ], "speed": 1 },
+            "walk_up":    { "frames": [  4,  5,  6,  7 ], "speed": 1 },
+            "walk_right": { "frames": [  8,  9, 10, 11 ], "speed": 1 },
+            "walk_left":  { "frames": [ 12, 13, 14, 15 ], "speed": 1 }
+        },
+        "animator": {
+            "cell": [0, 0],
+            "animation": "idle_down",
+            "frame": 0,
+            "time": 0,
+            "cells_per_sec": 6,
+            "playing": true
+        }
+    }
+}

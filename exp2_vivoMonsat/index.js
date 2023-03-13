@@ -37,12 +37,12 @@ vivo.load_save_data(save_data);
 // ------------
 let browser_inputs = {};
 let vivo_keymap = {
-    "ArrowUp": "up",
-    "ArrowDown": "down",
-    "ArrowLeft": "left",
-    "ArrowRight": "right",
-    "z": "a",
-    "x": "b"
+    "w": "up",
+    "s": "down",
+    "a": "left",
+    "d": "right",
+    "j": "a",
+    "k": "b"
 }
 window.onkeyup = function(e) {
     if (vivo_keymap[e.key]) { browser_inputs[vivo_keymap[e.key]] = false; }

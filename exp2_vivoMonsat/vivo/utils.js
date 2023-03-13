@@ -1,17 +1,4 @@
 
-// Array Ops
-
-export function arr_add(a, b) {
-    a = clone(a);
-    for (var key in a) { a[key] = a[key] + b[key]; }
-    return a;
-}
-export function arr_sub(a, b) {
-    a = clone(a);
-    for (var key in a) { a[key] = a[key] - b[key]; }
-    return a;
-}
-
 // Clear
 
 /** Removes all keys from the object. */
@@ -27,7 +14,7 @@ export function clear(obj) {
 export function clone(obj) {
     let cloned = {};
     if (typeof obj == "object") {
-        if (Array.isArray(obj)) {
+        if (Array.isArray(obj)) { // Special case for arrays to keep Array methods
             cloned = [];
         } else {
             cloned = {};

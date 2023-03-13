@@ -1,0 +1,8 @@
+{
+    "name": "camera",
+    "spawn_type": "unique",
+    "components": {
+        "camera": {},
+        "pos": [0, 0]
+    }
+}
